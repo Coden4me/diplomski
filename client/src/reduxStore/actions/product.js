@@ -31,6 +31,6 @@ export const getSearchProducts =
 
     dispatch({
       type: ProductTypes.SEARCH_PRODUCTS,
-      payload: { products: data.products, skip, total: data.count },
+      payload: { products: data.products ?? [], skip, total: data.count },
     });
   };

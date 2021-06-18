@@ -36,7 +36,12 @@ const bootstrap = async () => {
   app.use(errorHandle);
 
   app.listen(env.server.PORT, () => {
-    require("./cron-job");
+    console.log('SERVER RUNNING ON http://localhost:5000')
+    try {
+      require("./cron-job");
+    } catch (e) {
+      console.log(e);
+    }
   });
 };
 

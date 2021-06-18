@@ -121,8 +121,9 @@ router.get("/search/:categories/:sale/:skip", async (req, res, next) => {
     ]);
 
     const { products, totalCount } = rsp[0];
+    console.log("🚀 ~ file: product.js ~ line 124 ~ router.get ~ products", products)
 
-    return res.status(200).json({ products, count: totalCount[0]?.count ?? 0 });
+    return res.status(200).json({ products, count: totalCount?.[0].count ?? 0 });
   } catch (error) {
     return next(error);
   }
