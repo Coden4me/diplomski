@@ -44,7 +44,7 @@ const fn = async () => {
     const filePath = join(__dirname, `../emails/newsletter.pug`);
     await sgMail.send({
       to: emails,
-      from: "halcika_7@hotmail.com",
+      from: "elma.sakic@stu.ibu.edu.ba",
       subject: "Newsletter",
       html: pug.renderFile(filePath, {
         products1,

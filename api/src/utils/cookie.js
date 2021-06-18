@@ -5,9 +5,9 @@ const { isProduction, webToken } = env;
 const refreshOptions = {
   httpOnly: true,
   path: webToken.REFRESH_TOKEN_PATH,
-  sameSite: "strict",
+  sameSite: "lax",
   secure: isProduction,
-  domain: isProduction ? ".print-shop-burch.com" : undefined,
+  domain: isProduction ? "eager-rosalind-c761a8.netlify.app" : undefined,
 };
 
 module.exports = {

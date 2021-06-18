@@ -2,6 +2,7 @@ const cron = require("node-cron");
 const exec = require("child_process").exec;
 
 const cwd = process.cwd();
+console.log("🚀 ~ file: index.js ~ line 5 ~ cwd", cwd);
 
 const job = cron.schedule("*/10 * * * *", async () => {
   exec(`node ${cwd}/src/cron-job/cron.js`);
