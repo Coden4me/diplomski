@@ -6,7 +6,7 @@ const refreshOptions = {
   httpOnly: true,
   path: webToken.REFRESH_TOKEN_PATH,
   sameSite: "lax",
-  secure: isProduction,
+  secure: false,
   domain: isProduction ? "eager-rosalind-c761a8.netlify.app" : undefined,
 };
 

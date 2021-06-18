@@ -1,7 +1,8 @@
 const cron = require("node-cron");
 const exec = require("child_process").exec;
+const env = require("../utils/env");
 
-const cwd = process.cwd();
+const cwd = env.isProduction ? `${process.cwd()}/api` : process.cwd();
 console.log("🚀 ~ file: index.js ~ line 5 ~ cwd", cwd);
 
 const job = cron.schedule("*/10 * * * *", async () => {
