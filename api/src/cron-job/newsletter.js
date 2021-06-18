@@ -4,10 +4,13 @@ const sgMail = require("@sendgrid/mail");
 const pug = require("pug");
 const { join } = require("path");
 const { SENDGRID_API_KEY } = require("../utils/env");
+const { connect } = require("../db/db-connect");
+const env = require("../utils/env");
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 
 const fn = async () => {
+  await connect(env.db_uri);
   const allEmails = await NewsLetter.find({});
 
   const emails = allEmails.map((a) => a.email);

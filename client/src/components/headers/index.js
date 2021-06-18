@@ -36,7 +36,7 @@ const getLinks = (isAuthenticated, user, isSubscribed) => (
     {isAuthenticated && <NavLink to="/compare">Compare</NavLink>}
     {isAuthenticated && <Dropdown user={user} isSubscribed={isSubscribed} />}
     {!isAuthenticated && (
-      <GoogleLink href="http://localhost:5000/api/auth/google">
+      <GoogleLink href={`${ process.env.REACT_APP_API_URL}/auth/google`}>
         <GoogleButton />
       </GoogleLink>
     )}
