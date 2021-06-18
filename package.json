@@ -8,7 +8,7 @@
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn api\" \"yarn client\"",
     "start": "yarn --cwd api start",
-    "install-dep": "yarn --cwd client install && yarn --cwd api install"
+    "install": "yarn --cwd api install"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"
