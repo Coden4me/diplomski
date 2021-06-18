@@ -1,0 +1,16 @@
+{
+  "name": "elma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "api": "yarn --cwd api dev",
+    "client": "yarn --cwd client start",
+    "dev": "concurrently \"yarn api\" \"yarn client\"",
+    "start": "yarn --cwd api start",
+    "install-dep": "yarn --cwd frontend install && yarn --cwd backend install"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

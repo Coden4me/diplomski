@@ -1,0 +1,139 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* Below animations are fore modal created using React-Modal */
+.ReactModal__Overlay {
+  transition: transform 300ms ease-in-out;
+  transition-delay: 100ms;
+  transform: scale(0);
+  /* transform: translateY(-150%); */
+}
+
+.ReactModal__Overlay--after-open {
+  transform: scale(1);
+  /* transform: translateY(0%); */
+}
+
+.ReactModal__Overlay--before-close {
+  transform: scale(0);
+  /* transform: translateY(-150%); */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.comparison-table {
+  width: 100%;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.comparison-table table {
+  min-width: 41rem;
+  table-layout: fixed;
+}
+
+.comparison-table table tbody + tbody {
+  border-top-width: 1px;
+}
+
+.comparison-table .table-bordered thead td {
+  border-bottom-width: 1px;
+}
+
+.comparison-table .comparison-item {
+  padding: 0.875rem 0.75rem 1.125rem;
+  position: relative;
+}
+
+.comparison-table .comparison-item img {
+  max-width: 100%;
+  height: 200px;
+  display: inline;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #e7e7e7;
+}
+.bg-secondary {
+  background-color: #f7f7f7 !important;
+}
+
+.comparison-table .comparison-item .remove-item {
+  position: absolute;
+  background-color: tomato;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+}
+
+
+.custom-dropdown {
+  transform: translateX(23%);
+  top: 100%;
+}
+
+@media (min-width: 1024px) {
+  .custom-dropdown {
+    transform: none;
+  }
+}
+
+@media (max-width: 310px) {
+  .custom-dropdown {
+    min-width: 100%;
+    width: 300px;
+    max-width: 100%;
+  }
+}
+
+.alert {
+  position: fixed;
+  margin: 0 auto;
+  max-width: 100%;
+  width: fit-content;
+  padding: 1rem 2rem;
+  color: white;
+  z-index: 200;
+  transform: translate(-50%, 0);
+  left: 50%;
+  top: 20px;
+  border-radius: 10px;
+}
+
+.alert.error {
+  background-color: tomato;
+}
+
+.alert.success {
+  background-color: teal;
+}
+
+.alert button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-weight: bold;
+}
+
+.error-footer {
+  padding: 0.3rem;
+  margin: 0.5rem 0;
+  background-color: tomato;
+  color: white;
+  font-size: 12px;
+  width: fit-content;
+  border-radius: 10px;
+}
