@@ -42,8 +42,6 @@ function ScrollToTop() {
   return null;
 }
 
-let checking = false;
-
 function App() {
   const dispatch = useDispatch();
   const { loading, isAuthenticated, status, message } = useSelector(reduxProps);
@@ -51,10 +49,7 @@ function App() {
   const reset = () => dispatch(resetNewsletterResponse);
 
   useEffect(() => {
-    if (!checking) {
-      checking = true;
-      dispatch(refreshToken(true));
-    }
+    dispatch(refreshToken(true));
   }, [dispatch]);
 
   useEffect(() => {
