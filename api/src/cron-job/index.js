@@ -1,17 +1,12 @@
 const cron = require("node-cron");
-const exec = require("child_process").exec;
-const env = require("../utils/env");
 
-const cwd = env.isProduction ? `${process.cwd()}/api` : process.cwd();
-console.log("🚀 ~ file: index.js ~ line 5 ~ cwd", cwd);
-
-const job = cron.schedule("*/10 * * * *", async () => {
-  exec(`node ${cwd}/src/cron-job/cron.js`);
+const job = cron.schedule("*/2 * * * *", async () => {
+  require('./cron');
 });
 job.start();
 
 const job2 = cron.schedule("0 7 * * * *", async () => {
- exec(`node ${cwd}/src/cron-job/newsletter.js`);
+  require('./newsletter');
 });
 
 job2.start();

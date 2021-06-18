@@ -54,6 +54,7 @@ function App() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(refreshToken(true));
       dispatch(getUserData);
     }
   }, [dispatch, isAuthenticated]);
