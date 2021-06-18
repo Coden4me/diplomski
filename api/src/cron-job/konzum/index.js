@@ -223,7 +223,12 @@ const cbKBezAlk = async (url, page) => {
 };
 
 module.exports = async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    'args' : [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  });
   const page = await browser.newPage();
   await page.goto(
     "https://www.konzumshop.ba/#!/categories/5471597/povrce?show=all&sort_field=soldStatistics&sort=soldStatisticsDesc&page=1&per_page=200"
