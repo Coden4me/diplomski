@@ -13,11 +13,11 @@ const { errorHandle } = require("./middleware/errorHandle");
 const bootstrap = async () => {
   const app = express();
 
-  app.disable("x-powered-by");
   app.set("trust proxy", 1);
+  app.enable('trust proxy');
 
   const middlewares = [
-    cors({ origin: [env.url], credentials: true }),
+    cors({ origin: env.url, credentials: true }),
     passport.initialize(),
     hpp(),
     helmet(),

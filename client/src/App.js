@@ -72,8 +72,8 @@ function App() {
 
   useEffect(() => {
     if (!called) {
-      dispatch(refreshToken(true));
       called = true;
+      dispatch(refreshToken(true));
     }
   }, [dispatch]);
 
