@@ -60,6 +60,7 @@ class PassportService {
   }
 
   async passportCallback(err, data, res) {
+    console.log("🚀 ~ file: passport.js ~ line 63 ~ PassportService ~ passportCallback ~ err", err)
     const { url } = env;
 
     if (err) return res.redirect(`${url}/?err=${err}`);

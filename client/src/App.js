@@ -17,6 +17,7 @@ import {
   resetNewsletterResponse,
   authSuccess,
   getUserData,
+  authReset,
 } from "./reduxStore/actions";
 import Alert from "components/alert";
 
@@ -66,14 +67,15 @@ function App() {
     if (error) {
       called = true;
       setError(error);
+      dispatch(authReset())
       history.replace("/");
     }
   }, [error, token, dispatch, history]);
 
   useEffect(() => {
     if (!called) {
-      called = true;
       dispatch(refreshToken(true));
+      called = true;
     }
   }, [dispatch]);
 
