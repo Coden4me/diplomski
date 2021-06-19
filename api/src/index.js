@@ -13,8 +13,7 @@ const { errorHandle } = require("./middleware/errorHandle");
 const bootstrap = async () => {
   const app = express();
 
-  app.set("trust proxy", 1);
-  app.enable('trust proxy');
+  app.disable('x-powered-by');
 
   const middlewares = [
     cors({ origin: env.url, credentials: true }),
