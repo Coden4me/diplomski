@@ -20,6 +20,7 @@ import {
   authReset,
 } from "./reduxStore/actions";
 import Alert from "components/alert";
+import axios from 'axios';
 
 const reduxProps = createSelector(
   (state) => state.auth.authLoading,
@@ -56,6 +57,16 @@ function App() {
     setError("")
     dispatch(resetNewsletterResponse);
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      axios.get(`${process.env.REACT_APP_API_URL}/`);
+    }, 1000*60*30);
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, [])
 
   useEffect(() => {
     if (token) {

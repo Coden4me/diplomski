@@ -25,8 +25,13 @@ const bootstrap = async () => {
     express.urlencoded({ extended: true, limit: "1kb", parameterLimit: 10 }),
     cookieparser(),
   ];
-
+  
   app.use(middlewares);
+
+  app.get('/api', (_, res) => {
+    console.log('keep server alive');
+    return res.status(200).json({message: 'ok'})
+  });
 
   app.use("/api", router);
 
