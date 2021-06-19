@@ -6,9 +6,10 @@ const env = require("../utils/env");
 
 const router = require("express").Router();
 
-router.post("/logout", (req, res) => {
-  req.logOut();
-  req.logout();
+router.post("/logout", authMiddleware, (req, res) => {
+  if (req.logout) {
+    req.logout();
+  }
   cookie.removeRefreshToken(res);
   return res.status(200).json({ message: "success" });
 });

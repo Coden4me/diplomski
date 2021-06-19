@@ -16,6 +16,7 @@ import {
   refreshToken,
   resetNewsletterResponse,
   authSuccess,
+  getUserData,
 } from "./reduxStore/actions";
 import Alert from "components/alert";
 
@@ -58,6 +59,7 @@ function App() {
   useEffect(() => {
     if (token) {
       called = true;
+      dispatch(getUserData);
       dispatch(authSuccess(token));
       history.replace("/");
     }
