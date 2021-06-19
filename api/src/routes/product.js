@@ -1,6 +1,5 @@
 const { authMiddleware } = require("../middleware/auth");
 const Product = require("../db/models/product");
-const HttpException = require("../utils/error");
 const mongoose = require('mongoose');
 
 const { Types } = mongoose;

@@ -8,8 +8,8 @@ router.post("/", async (req, res, next) => {
   try {
     const { name, email, subject, message } = req.body;
     sgMail.send({
-      from: "halcika_7@hotmail.com",
-      to: "harisbeslic32@gmail.com",
+      from: "elma.sakic@stu.ibu.edu.ba",
+      to: "elma.sakic@stu.ibu.edu.ba",
       subject: "Contact Form",
       html: `<h1>Contact Form</h1>
           <br />
