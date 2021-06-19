@@ -38,7 +38,7 @@ const bootstrap = async () => {
   app.listen(env.server.PORT, () => {
     console.log(`SERVER RUNNING ON ${env.server.PORT} PORT`);
     console.log(`SERVER URL ${env.server.URL}`);
-    require("./cron-job")
+    require("./cron-job");
   });
 };
 

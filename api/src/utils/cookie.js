@@ -1,13 +1,12 @@
 const env = require("./env");
 
-const { webToken } = env;
+const { webToken, isProduction } = env;
 
 const refreshOptions = {
   httpOnly: true,
   path: webToken.REFRESH_TOKEN_PATH,
   sameSite: "lax",
-  secure: false,
-  domain: undefined,
+  secure: isProduction,
 };
 
 module.exports = {

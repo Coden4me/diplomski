@@ -1,33 +1,29 @@
-import React from "react";
 import "tailwindcss/dist/tailwind.css";
 import "styles/globalStyles.css";
 import Header from "components/headers";
 import Footer from "components/footer";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import AnimationRevealPage from "helpers/AnimationRevealPage";
 import Routes from "./routes";
 
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { createSelector } from "reselect";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "components/Spinner";
 import {
   refreshToken,
-  getUserData,
   resetNewsletterResponse,
+  authSuccess,
 } from "./reduxStore/actions";
 import Alert from "components/alert";
 
 const reduxProps = createSelector(
   (state) => state.auth.authLoading,
-  (state) => state.auth.isAuthenticated,
   (state) => state.newsletter,
-  (loading, isAuthenticated, newsletter) => ({
+  (loading, newsletter) => ({
     loading,
-    isAuthenticated,
     ...newsletter,
   })
 );
@@ -42,31 +38,51 @@ function ScrollToTop() {
   return null;
 }
 
+let called = false;
+
 function App() {
   const dispatch = useDispatch();
-  const { loading, isAuthenticated, status, message } = useSelector(reduxProps);
+  const { loading, status, message } = useSelector(reduxProps);
+  const location = useLocation();
+  const history = useHistory();
 
-  const reset = () => dispatch(resetNewsletterResponse);
+  const [err, setError] = useState("");
+  const token = new URLSearchParams(location.search).get("token");
+  const error = new URLSearchParams(location.search).get("err");
+  
+  const reset = () => {
+    setError("")
+    dispatch(resetNewsletterResponse);
+  }
 
   useEffect(() => {
-    dispatch(refreshToken(true));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(refreshToken(true));
-      dispatch(getUserData);
+    if (token) {
+      called = true;
+      dispatch(authSuccess(token));
+      history.replace("/");
     }
-  }, [dispatch, isAuthenticated]);
+    if (error) {
+      called = true;
+      setError(error);
+      history.replace("/");
+    }
+  }, [error, token, dispatch, history]);
+
+  useEffect(() => {
+    if (!called) {
+      dispatch(refreshToken(true));
+      called = true;
+    }
+  }, [dispatch]);
 
   if (loading) return <Spinner />;
 
   return (
-    <Router>
-      {message && (
+    <>
+      {(message || err) && (
         <Alert
-          message={message}
-          type={status < 400 ? "success" : "error"}
+          message={message ??err}
+          type={status < 400 && !err ? "success" : "error"}
           cb={reset}
         />
       )}
@@ -76,7 +92,7 @@ function App() {
         <Routes />
       </AnimationRevealPage>
       <Footer />
-    </Router>
+    </>
   );
 }
 

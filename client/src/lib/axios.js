@@ -6,6 +6,7 @@ const url = process.env.REACT_APP_API_URL;
 
 const ax = Axios.create({
   withCredentials: true,
+  validateStatus: () => true,
   baseURL: url,
 });
 

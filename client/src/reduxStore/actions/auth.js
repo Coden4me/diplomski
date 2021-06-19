@@ -3,6 +3,7 @@ import { AuthToken } from "../../lib/decode";
 
 // types
 import { AuthTypes } from "../types/auth";
+import { getUserData } from "./userData";
 
 export const authSuccess = (token) => ({
   type: AuthTypes.AUTH_SUCCESS,
@@ -34,6 +35,7 @@ export const refreshToken =
     });
 
     if (data?.accessToken) {
+      dispatch(getUserData);
       return dispatch(authSuccess(data.accessToken));
     }
 

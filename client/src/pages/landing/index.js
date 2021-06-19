@@ -1,5 +1,4 @@
 import tw from "twin.macro";
-import { useDispatch } from "react-redux";
 
 import AnimationRevealPage from "helpers/AnimationRevealPage";
 import Hero from "components/hero/TwoColumnWithVideo";
@@ -12,9 +11,6 @@ import Testimonial from "components/testimonials/ThreeColumnWithProfileImage";
 import chefIconImageSrc from "images/chef-icon.svg";
 import celebrationIconImageSrc from "images/celebration-icon.svg";
 import shopIconImageSrc from "images/shop-icon.svg";
-import { useHistory, useLocation } from "react-router";
-import { useState, useEffect } from "react";
-import { authSuccess } from "reduxStore/actions";
 
 const Subheading = tw.span`tracking-wider text-sm font-medium`;
 const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
@@ -22,26 +18,6 @@ const Description = tw.span`inline-block mt-8`;
 const imageCss = tw`rounded-4xl`;
 
 const Landing = () => {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const [err, setError] = useState("");
-  console.log("🚀 ~ file: index.js ~ line 30 ~ Landing ~ err", err);
-  const token = new URLSearchParams(location.search).get("token");
-  const error = new URLSearchParams(location.search).get("err");
-
-  useEffect(() => {
-    if (token) {
-      dispatch(authSuccess(token));
-      history.replace("/");
-    }
-    if (error) {
-      setError(error);
-      history.replace("/");
-    }
-  }, [error, token, dispatch, history]);
-
   return (
     <AnimationRevealPage>
       <Hero
