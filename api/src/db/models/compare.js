@@ -14,7 +14,7 @@ const compareSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Product",
       default: null,
-      unique: true,
+      
     },
   ],
 });
